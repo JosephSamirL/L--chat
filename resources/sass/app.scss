@@ -1,0 +1,279 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+#app{
+    height: 100%;
+}
+.card-body{
+    height: 100%;
+    overflow: scroll;
+    padding-bottom: 86px;
+
+}
+#sub{
+    position: fixed;
+    width: 100%;
+    left: 0%;
+    padding: 0 5vw;
+    bottom: 0px;
+    height: 93px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: chartreuse;
+    box-shadow: 0px -13px 20px 0px #e3e3e3;
+}
+
+input[name="message"]{
+    width: 100%;
+    height: 40px;
+    border-radius: 100px;
+    border: 1px solid;
+    padding-left: 59px;
+}
+#sub > button{
+
+    width: 17%;
+    border-radius: 100px;
+    border: 1px solid;
+    position: absolute;
+    border: navajowhite;
+    right: 8%;
+
+}
+.message{
+    &-container{
+        width: fit-content;
+        max-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 1000px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        /* identical to box height */
+        position: relative;
+        margin-bottom: 35px;
+        margin-top: 25px;
+        color: #181818;
+        background: #D3D4FF;
+        margin-left: auto;
+        &>img{
+            max-width: calc(100% - 50px);
+            margin-left: 7px;
+            margin-top: 6px;
+            border: 3px solid #878787;
+            border-radius: 5px;
+        }
+
+    }
+    &-container>p{
+        margin: 0px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 10px;
+
+    }
+    &-container.other{
+        background: #F2F3C5;
+        margin-left: unset;
+    }
+    &-sender{
+        min-width: max-content;
+        position: absolute;
+        top: -21px;
+        color: #047207;
+        /* margin-top: 21px; */
+        left: 13px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px!important;
+        line-height: 24px;
+
+    }
+    &-sender.you{
+        color: #D95E05;
+    }
+}
+.other>.deleteTheProduct{
+    display: none;
+}
+.app{
+  &-container{
+      max-height: calc(100% - 32px);
+      padding-bottom: 0px !important;
+  }
+}
+.rooms{
+    &_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        padding-bottom: 99px;
+    }
+    &-input{
+        &_container{
+            width: 100%;
+            background: white;
+            position: fixed;
+            bottom: 0px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0px -13px 20px 0px #e3e3e3;
+            align-items: center;
+        }
+    }
+    &_link{
+        width: 80%;
+        max-width: 350px;
+        height: 200px;
+        background: bisque;
+        border-radius: 106px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        font-size: 21px;
+        margin-bottom: 20px;
+    }
+}
+input[name="Room"]{
+    width: 100%;
+    height: 40px;
+    border-radius: 100px;
+    border: 1px solid;
+    padding-left: 20px;
+}
+#subroom{
+    width: 80%;
+    height: max-content;
+
+}
+#subroom>button{
+    width: 17%;
+    border-radius: 100px;
+    border: 1px solid;
+    position: absolute;
+    border: navajowhite;
+    right: 14%;
+    top: 27px;
+}
+.image-upload > input
+{
+    display: none;
+}
+.image-upload{
+    position: absolute;
+    left: 31px;
+    width: 35px;
+}
+
+.image-upload img
+{
+    width: 80px;
+    cursor: pointer;
+    max-width: 100%;
+}
+.switch-button {
+    background: rgba(255, 255, 255, 0.56);
+
+    overflow: hidden;
+    width: 240px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #155FFF;
+    position: relative;
+    padding-right: 120px;
+    position: relative;
+
+    &:before {
+        content: "Private";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+        pointer-events: none;
+    }
+
+    &-checkbox {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 2;
+
+        &:checked + .switch-button-label:before {
+            transform: translateX(120px);
+            transition: transform 300ms linear;
+        }
+
+        & + .switch-button-label {
+            position: relative;
+
+            display: block;
+            user-select: none;
+            pointer-events: none;
+
+            &:before {
+                content: "";
+                background: #fff;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+
+                transform: translateX(0);
+                transition: transform 300ms;
+            }
+
+            .switch-button-label-span {
+                position: relative;
+            }
+        }
+    }
+}
+.toggle{
+    &-center{
+        margin: 0px;
+        padding: 0px;
+        position: relative;
+        /* left: calc(50% - 140px); */
+        background: gray;
+        width: -webkit-fill-available;
+        display: flex;
+        justify-content: center;
+
+    }
+}
