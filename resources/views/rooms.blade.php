@@ -3,6 +3,7 @@
 @section('content')
     <div class="rooms_container">
     @foreach ($rooms as $room)
+        @if($room->public)
         <a class="rooms_link" href="room/{{$room->id}}">
             {{$room->name}}
 
@@ -15,6 +16,7 @@
 
             </form>
         </a>
+            @endif
     @endforeach
     </div>
     <div class="rooms-input_container">

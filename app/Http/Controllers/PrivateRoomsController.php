@@ -27,7 +27,9 @@ class PrivateRoomsController extends Controller
 
     {
 
-        return view('private',array("num"=>$id));
+        $rooms = Auth::User()->rooms;
+        return view('private', array("rooms" => $rooms));
+
     }
 
 }

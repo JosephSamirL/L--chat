@@ -44,7 +44,7 @@ class RoomsController extends Controller
 
 //        $Room->user_id = Auth::User()->id;
         $Room->name = $inp;
-
+        $Room->public= true;
         $Room->save();
         $test = new User_room();
         $test->user_id = Auth::User()->id;
