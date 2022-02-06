@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
     public function Messages()
     {
         return $this->hasMany(Message::class);
     }
 }
+

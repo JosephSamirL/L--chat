@@ -16,10 +16,21 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->unsignedBigInteger("user_id");
+
 
             $table->timestamps();
-            $table->index("user_id");
+
+        });
+        Schema::create('room_user', function (Blueprint $table) {
+            $table->id();
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('room_id');
+            $table->unique(['user_id','room_id']);
+
+            $table->timestamps();
+            $table->foreign('user_id')->references("id")->on("users")->onDelete("cascade");
+            $table->foreign('room_id')->references("id")->on("rooms")->onDelete("cascade");
         });
     }
 

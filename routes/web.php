@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('/rooms/{id}', [App\Http\Controllers\PrivateRoomsController::class, 'index'])->name('private');
 Route::get('/room/{num}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/rooms', [App\Http\Controllers\RoomsController::class, 'index'])->name('rooms');
 Route::post('/home', [App\Http\Controllers\HomeController::class, 'create']);

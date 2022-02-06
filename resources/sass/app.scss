@@ -147,7 +147,7 @@ input[name="message"]{
         max-width: 350px;
         height: 200px;
         background: bisque;
-        border-radius: 106px;
+        border-radius: 20px;
         text-align: center;
         display: flex;
         justify-content: center;
@@ -196,14 +196,13 @@ input[name="Room"]{
     max-width: 100%;
 }
 .switch-button {
-    background: rgba(255, 255, 255, 0.56);
-
+    background: bisque;
     overflow: hidden;
     width: 240px;
     text-align: center;
     font-size: 18px;
     letter-spacing: 1px;
-    color: #155FFF;
+    color: #000000;
     position: relative;
     padding-right: 120px;
     position: relative;
@@ -269,11 +268,14 @@ input[name="Room"]{
         margin: 0px;
         padding: 0px;
         position: relative;
-        /* left: calc(50% - 140px); */
-        background: gray;
+
+
         width: -webkit-fill-available;
         display: flex;
         justify-content: center;
+        position: absolute;
+        left: 0px;
+        background: unset;
 
     }
 }
