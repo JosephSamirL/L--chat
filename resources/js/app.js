@@ -235,3 +235,82 @@ $('.formDeleteProductRooms').on('submit', function(e) {
 //     })
 //     return false;
 // })
+
+
+
+$('#subroomprivate').on('submit', function(e){
+    e.preventDefault();
+    var $this = $(this);
+
+    $.ajax({
+        url: $this.prop('action'),
+        method: 'post',
+        data: $this.serialize(),
+    }).done(function(response){
+        $.ajax({  //create an ajax request to display.php
+            type: "GET",
+            url: "/roomies",
+            success: function (data) {
+                $.ajax({  //create an ajax request to display.php
+                    type: "GET",
+                    url: "/users",
+                    success: function (dataa) {
+                        $("html, body, .card-body").animate({ scrollTop: 70000000000 }, 10);
+                        let user = dataa.filter((item)=>{
+                            return item.id == data[data.length - 1].user_id;
+                        })
+
+
+                        $(".rooms_container").append(`
+                        <a href="room/${data[data.length - 1].id}" class="rooms_link">${data[data.length - 1].name}
+                        <form method="POST" action="/destroyRoom" class="formDeleteProductRooms new"><input type="hidden" name="_token" value=${$(".formDeleteProductRooms>input[name='_token']").val()}> <input name="id" type="hidden" value=${data[data.length - 1].id}>
+                        <button style="display: block" type="submit">Remove</button>
+                        </form>
+                        </a>
+                        `)
+
+                        $('.formDeleteProductRooms.new').on('submit', function(e) {
+
+                            e.preventDefault()
+                            let _this = this
+                            var dataId = $(this).children("button").attr('data-id');
+
+                            $.ajax({
+                                url: '/destroyRoom',
+                                type: 'POST',
+                                data: $(this).serialize(),
+                                success: function( msg ) {
+                                    $(_this).parents("a").remove();
+                                    let number = $(_this).children("input[name='id']").val()
+                                    $(`div[data-id=${number}]`).remove();
+
+
+                                },
+                                error: function( data ) {
+                                    if ( data.status === 422 ) {
+                                        // toastr.error('Cannot delete the category');
+                                    }
+                                }
+                            });
+
+                            return false;
+                        });
+
+                    }
+                });
+
+            }
+        });
+    })
+
+});
+const domStuff = {
+    init:function (){
+      this.handleDrop()
+    },
+    handleDrop:function (){
+      $('.card-dropdown-selected').click(function (){
+          $(".card-dropdown-drop").slideToggle()
+      })
+    },
+}.init()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Room;
+use App\Models\User;
 use Auth;
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -29,9 +30,23 @@ class HomeController extends Controller
         $message = Message::All();
         $message = Room::findOrFail($num)->Messages;
         $roomName = Room::findOrFail($num)->name;
+        $private = Room::findOrFail($num)->public;
+        $users = User::All();
+        $room = Room::findOrFail($num);
+        $InRoom = [];
+        foreach ($room->users as $user) {
+            if ($room->users->contains("id", $user->id)) {
+                array_push($InRoom, $user->id);
+
+            }
+        }
+        dd($InRoom);
         return view('home', array("message" => $message,
         "num"=>$num,
-            "name"=>$roomName
+            "name"=>$roomName,
+            "room"=>$room,
+            "private" =>$private,
+            "users" => $users,
         ));
     }
     public function create(Request $request)

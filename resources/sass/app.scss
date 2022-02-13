@@ -170,6 +170,20 @@ input[name="Room"]{
     height: max-content;
 
 }
+#subroomprivate{
+    width: 80%;
+    height: max-content;
+
+}
+#subroomprivate>button{
+    width: 17%;
+    border-radius: 100px;
+    border: 1px solid;
+    position: absolute;
+    border: navajowhite;
+    right: 14%;
+    top: 27px;
+}
 #subroom>button{
     width: 17%;
     border-radius: 100px;
@@ -279,3 +293,50 @@ input[name="Room"]{
 
     }
 }
+#dropdown{
+    position: relative;
+}
+.card{
+    &-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    &-dropdown{
+        &-drop{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-height: 300px;
+            background: #f7f7f7;
+            z-index: 9;
+            padding-top: 39px;
+            overflow-y: scroll;
+            padding-bottom: 0px;
+            display: none;
+            &-user{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: white;
+                border: 1px solid #eeee;
+                cursor: pointer;
+
+                margin-bottom: 4px;
+            }
+        }
+        &-selected{
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+            padding-left: 10px;
+            background: #f7f7f7;
+            &>svg{
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+    }
+}
+

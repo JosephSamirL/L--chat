@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/rooms/{id}', [App\Http\Controllers\PrivateRoomsController::class, 'index'])->name('private');
+Route::post('/roomyprivate', [App\Http\Controllers\PrivateRoomsController::class, 'create']);
 Route::get('/room/{num}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/rooms', [App\Http\Controllers\RoomsController::class, 'index'])->name('rooms');
 Route::post('/home', [App\Http\Controllers\HomeController::class, 'create']);
@@ -29,3 +30,4 @@ Route::get('/roomies',[App\Http\Controllers\RoomsController::class, 'fetchRoom']
 Route::post('/destroy', [App\Http\Controllers\ajaxMessages::class, 'removeMessage']);
 Route::post('/destroyRoom', [App\Http\Controllers\ajaxMessages::class, 'removeRoom']);
 Route::post('/imageupload', [App\Http\Controllers\ajaxMessages::class, 'store']);
+

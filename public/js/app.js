@@ -5466,6 +5466,70 @@ $('.formDeleteProductRooms').on('submit', function (e) {
 //     return false;
 // })
 
+$('#subroomprivate').on('submit', function (e) {
+  e.preventDefault();
+  var $this = $(this);
+  $.ajax({
+    url: $this.prop('action'),
+    method: 'post',
+    data: $this.serialize()
+  }).done(function (response) {
+    $.ajax({
+      //create an ajax request to display.php
+      type: "GET",
+      url: "/roomies",
+      success: function success(data) {
+        $.ajax({
+          //create an ajax request to display.php
+          type: "GET",
+          url: "/users",
+          success: function success(dataa) {
+            $("html, body, .card-body").animate({
+              scrollTop: 70000000000
+            }, 10);
+            var user = dataa.filter(function (item) {
+              return item.id == data[data.length - 1].user_id;
+            });
+            $(".rooms_container").append("\n                        <a href=\"room/".concat(data[data.length - 1].id, "\" class=\"rooms_link\">").concat(data[data.length - 1].name, "\n                        <form method=\"POST\" action=\"/destroyRoom\" class=\"formDeleteProductRooms new\"><input type=\"hidden\" name=\"_token\" value=").concat($(".formDeleteProductRooms>input[name='_token']").val(), "> <input name=\"id\" type=\"hidden\" value=").concat(data[data.length - 1].id, ">\n                        <button style=\"display: block\" type=\"submit\">Remove</button>\n                        </form>\n                        </a>\n                        "));
+            $('.formDeleteProductRooms.new').on('submit', function (e) {
+              e.preventDefault();
+
+              var _this = this;
+
+              var dataId = $(this).children("button").attr('data-id');
+              $.ajax({
+                url: '/destroyRoom',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function success(msg) {
+                  $(_this).parents("a").remove();
+                  var number = $(_this).children("input[name='id']").val();
+                  $("div[data-id=".concat(number, "]")).remove();
+                },
+                error: function error(data) {
+                  if (data.status === 422) {// toastr.error('Cannot delete the category');
+                  }
+                }
+              });
+              return false;
+            });
+          }
+        });
+      }
+    });
+  });
+});
+var domStuff = {
+  init: function init() {
+    this.handleDrop();
+  },
+  handleDrop: function handleDrop() {
+    $('.card-dropdown-selected').click(function () {
+      $(".card-dropdown-drop").slideToggle();
+    });
+  }
+}.init();
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

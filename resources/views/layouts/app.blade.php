@@ -59,13 +59,26 @@
                                     <a class="nav-link" href="/rooms/{{Auth::user()->id}}">
                                         Private Rooms
                                     </a>
+
+
                                 @endif
 
+                                @if(str_contains(url()->current(), 'rooms/'))
+                                        <a class="nav-link" href="/rooms">
+                                            Public Rooms
+                                        </a>
+                                    @endif
+
                             </li>
+
+
+
                             <li class="nav-item dropdown">
+
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
+
                                 </a>
 
 
