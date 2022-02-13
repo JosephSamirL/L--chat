@@ -40,7 +40,7 @@ class HomeController extends Controller
 
             }
         }
-        dd($InRoom);
+
         return view('home', array("message" => $message,
         "num"=>$num,
             "name"=>$roomName,
